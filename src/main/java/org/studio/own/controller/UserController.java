@@ -20,25 +20,25 @@ public class UserController {
     @Autowired // 依赖注入service
             UserService userService;
 
-    @RequestMapping(value = "/page",method = RequestMethod.GET)
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
     public Page<User> getStudents(Pageable pageInfo) {
         return userService.findUserByPage(pageInfo);
     }
 
-    @RequestMapping(value="/id", method = RequestMethod.GET)
+    @RequestMapping(value = "/id", method = RequestMethod.GET)
     protected User getUserById(Long id) {
         return userService.getUserById(id);
     }
 
-    @RequestMapping(value = "/User",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/User", method = RequestMethod.DELETE)
     protected void deleteUser(Long id) {
         User user = new User();
         user.setId(id);
         userService.deleteUser(user);
     }
 
-    @RequestMapping(value = "/User",method = RequestMethod.PUT)
+    @RequestMapping(value = "/User", method = RequestMethod.PUT)
     protected User addUser(User user) {
         if (user.getId() != null && user.getId() != 0) {
             return userService.updateUser(user);
